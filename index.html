@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spelling Bee Contest – Licencias Educativas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      background: #0b0b0b;
+      color: #f5f5f5;
+    }
+    header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      background: radial-gradient(circle at top, #ffcc00, #b91c1c 60%, #060606 100%);
+    }
+    header h1 {
+      margin: 0 0 .5rem;
+      font-size: 2rem;
+    }
+    header p {
+      margin: 0;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+    .btn-primary {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: .8rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      background: #facc15;
+      color: #111827;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: #111827;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      border: 1px solid #1f2937;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      background: #1f2937;
+      color: #facc15;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: .5rem;
+    }
+    .btn-buy {
+      margin-top: 1rem;
+      padding: .7rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: #f97316;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-buy:hover {
+      opacity: .9;
+    }
+    form {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+      max-width: 480px;
+    }
+    label {
+      font-size: .9rem;
+      display: block;
+      margin-bottom: .25rem;
+    }
+    input, select {
+      width: 100%;
+      padding: .6rem .7rem;
+      border-radius: .5rem;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #f9fafb;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: .8rem;
+      color: #9ca3af;
+      border-top: 1px solid #1f2937;
+      background: #020617;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Spelling Bee Contest</h1>
+    <p>Licencias educativas para digitalizar tus concursos de spelling bee sin papel, sin errores y con una experiencia profesional para tu escuela.</p>
+    <button class="btn-primary" onclick="scrollToPackages()">Ver paquetes de licencias</button>
+  </header>
+
+  <main>
+    <section id="paquetes">
+      <h2 class="section-title">Paquetes de licenciamiento</h2>
+      <p>Elige el plan que mejor se adapte a tu escuela. Más adelante conectaremos estos botones con el sistema de pago y licencias.</p>
+
+      <div class="cards">
+        <!-- PAQ1 -->
+        <article class="card">
+          <span class="badge">Mensual · Piloto</span>
+          <h3>Paquete 1 – Licencia Mensual Básica</h3>
+          <p>Ideal para pruebas piloto y actividades puntuales. Incluye 5 rondas de palabras precargadas y temporizador fijo de 20 segundos.</p>
+          <p class="price">$250 MXN</p>
+          <button class="btn-buy" onclick="comprar('PAQ1')">Comprar Paquete 1</button>
+        </article>
+
+        <!-- PAQ2 -->
+        <article class="card">
+          <span class="badge">Recomendado</span>
+          <h3>Paquete 2 – Licencia Anual Institucional</h3>
+          <p>Diseñado para integrar Spelling Bee Contest al ciclo escolar completo. Permite crear y editar listas personalizadas y ajustar el temporizador.</p>
+          <p class="price">$1,550 MXN / año</p>
+          <button class="btn-buy" onclick="comprar('PAQ2')">Comprar Paquete 2</button>
+        </article>
+
+        <!-- PAQ3 -->
+        <article class="card">
+          <span class="badge">Perpetuo</span>
+          <h3>Paquete 3 – Licencia Perpetua Personalizada</h3>
+          <p>Experiencia institucional a la medida, con personalización visual (logo de la escuela, fondos y branding educativo).</p>
+          <p class="price">$3,500 MXN pago único</p>
+          <button class="btn-buy" onclick="comprar('PAQ3')">Comprar Paquete 3</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2 class="section-title" style="margin-top:3rem;">Datos de contacto de la escuela</h2>
+      <p>En el siguiente paso conectaremos este formulario con el backend y Mercado Pago. Por ahora solo es para estructurar el flujo.</p>
+
+      <form onsubmit="enviarFormulario(event)">
+        <div>
+          <label for="nombre">Nombre de contacto</label>
+          <input id="nombre" name="nombre" required />
+        </div>
+        <div>
+          <label for="institucion">Nombre de la institución</label>
+          <input id="institucion" name="institucion" required />
+        </div>
+        <div>
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div>
+          <label for="paquete">Paquete de interés</label>
+          <select id="paquete" name="paquete" required>
+            <option value="">Selecciona una opción</option>
+            <option value="PAQ1">Paquete 1 – Mensual</option>
+            <option value="PAQ2">Paquete 2 – Anual</option>
+            <option value="PAQ3">Paquete 3 – Perpetuo</option>
+          </select>
+        </div>
+        <button class="btn-primary" type="submit">Enviar interés (modo maqueta)</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Aleteo Animation &amp; Game Studios · Spelling Bee Contest · Esta es una versión preliminar de la landing.
+  </footer>
+
+  <script>
+    function scrollToPackages() {
+      document.getElementById('paquetes').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function comprar(paqueteId) {
+      alert('Más adelante este botón abrirá el pago para ' + paqueteId + '.');
+    }
+
+    function enviarFormulario(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const institucion = document.getElementById('institucion').value;
+      const email = document.getElementById('email').value;
+      const paquete = document.getElementById('paquete').value;
+
+      alert(
+        'Formulario en modo maqueta.\n\n' +
+        'Nombre: ' + nombre + '\n' +
+        'Institución: ' + institucion + '\n' +
+        'Email: ' + email + '\n' +
+        'Paquete: ' + paquete + '\n\n' +
+        'En el siguiente paso conectaremos esto con el backend en Vercel y Mercado Pago.'
+      );
+    }
+  </script>
+</body>
+</html>
