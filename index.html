@@ -5,685 +5,718 @@
     <title>Spelling Bee Contest – Licencias Educativas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        /* ===== MODAL ===== */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+        :root {
+            --bg: #020617;
+            --bg-soft: #02081b;
+            --card: #020617;
+            --card-soft: #020824;
+            --accent: #f97316;
+            --accent-soft: #fed7aa;
+            --accent-strong: #ea580c;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --border-soft: #111827;
+            --badge: #0f172a;
+            --success: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+            color: var(--text-main);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HERO */
+        header {
+            background: radial-gradient(circle at top left, #f97316 0, #ef4444 30%, #020617 75%);
+            padding: 2.25rem 1.5rem 4rem;
+            color: #fff;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-label {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            z-index: 9999;
+            gap: .5rem;
+            padding: .25rem .75rem;
+            border-radius: 999px;
+            background: rgba(15,23,42,.7);
+            border: 1px solid rgba(249,115,22,.6);
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
         }
 
-            .modal.hidden {
-                display: none;
-            }
-
-        .modal-content {
-            background: linear-gradient(145deg, #0b1220, #020617);
-            border: 1px solid #1e293b;
-            border-radius: 16px;
-            padding: 24px;
-            width: 100%;
-            max-width: 420px;
-            color: #ffffff;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        .hero-title {
+            font-size: clamp(1.9rem, 2.8vw, 2.6rem);
+            font-weight: 700;
+            margin: .75rem 0 .25rem;
         }
 
-            .modal-content h3 {
-                margin-bottom: 8px;
-            }
-
-        .modal-description {
-            font-size: 0.9rem;
-            color: #cbd5f5;
-            margin-bottom: 16px;
+        .hero-subtitle {
+            font-size: .95rem;
+            max-width: 620px;
+            line-height: 1.5;
         }
 
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            margin-bottom: 16px;
-            font-size: 1rem;
-        }
-
-        .modal-actions {
+        .hero-cta {
+            margin-top: 1.5rem;
             display: flex;
-            gap: 12px;
+            flex-wrap: wrap;
+            gap: .75rem;
         }
 
-        .btn-primary {
-            flex: 1;
-            background: #f97316;
-            color: #000;
+        .btn-pill-primary {
             border: none;
             border-radius: 999px;
-            padding: 12px;
-            font-weight: bold;
+            padding: .75rem 1.4rem;
+            background: #020617;
+            color: #fde68a;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: .9rem;
+            box-shadow: 0 0 0 1px rgba(15,23,42,.8);
+        }
+
+        .btn-pill-secondary {
+            border-radius: 999px;
+            padding: .75rem 1.4rem;
+            border: 1px solid rgba(15,23,42,.8);
+            background: rgba(15,23,42,.6);
+            color: #e5e7eb;
+            font-size: .9rem;
             cursor: pointer;
         }
 
-        .btn-secondary {
-            flex: 1;
-            background: transparent;
-            border: 1px solid #64748b;
-            color: #e5e7eb;
+        .hero-columns {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+
+        .hero-card {
+            border-radius: 18px;
+            padding: 1.5rem 1.6rem;
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%, #02081b 100%);
+            border: 1px solid rgba(15,23,42,.9);
+            box-shadow: 0 18px 45px rgba(0,0,0,.65);
+        }
+
+            .hero-card h2 {
+                margin: 0 0 .75rem;
+                font-size: 1.05rem;
+                letter-spacing: .02em;
+                text-transform: uppercase;
+                color: #9ca3af;
+            }
+
+            .hero-card h3 {
+                margin: 0 0 .75rem;
+                font-size: 1.25rem;
+            }
+
+        .hero-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: .6rem;
+        }
+
+            .hero-benefits li {
+                display: flex;
+                align-items: flex-start;
+                gap: .5rem;
+                font-size: .9rem;
+                color: var(--text-muted);
+            }
+
+                .hero-benefits li span.icon {
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 999px;
+                    background: rgba(34,197,94,.12);
+                    border: 1px solid rgba(34,197,94,.5);
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: .7rem;
+                    color: #bbf7d0;
+                    margin-top: 2px;
+                }
+
+        /* MAIN LAYOUT */
+        main {
+            padding: 0 1.5rem 3.5rem;
+        }
+
+        .main-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-top: 2.5rem;
+        }
+
+        /* PLANES */
+        .section-title {
+            font-size: 1.25rem;
+            margin-bottom: .25rem;
+        }
+
+        .section-subtitle {
+            font-size: .9rem;
+            color: var(--text-muted);
+            max-width: 620px;
+        }
+
+        .plans-grid {
+            margin-top: 1.75rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .plan-card {
+            background: radial-gradient(circle at top left, #020617 0, #020617 50%, #02081b 100%);
+            border-radius: 18px;
+            padding: 1.35rem 1.4rem 1.4rem;
+            border: 1px solid rgba(15,23,42,.9);
+            box-shadow: 0 18px 40px rgba(0,0,0,.65);
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+        }
+
+        .plan-badge {
+            align-self: flex-start;
+            padding: .1rem .6rem;
             border-radius: 999px;
-            padding: 12px;
+            background: rgba(15,23,42,.9);
+            border: 1px solid rgba(148,163,184,.45);
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #e5e7eb;
+            margin-bottom: .75rem;
+        }
+
+        .plan-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0 0 .35rem;
+        }
+
+        .plan-desc {
+            font-size: .85rem;
+            color: var(--text-muted);
+            margin: 0 0 1rem;
+        }
+
+        .plan-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: .15rem;
+        }
+
+        .plan-meta {
+            font-size: .8rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .plan-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .plan-button {
+            padding: .65rem 1.1rem;
+            border-radius: 999px;
+            border: none;
+            background: var(--accent);
+            color: #111827;
+            font-weight: 600;
+            font-size: .9rem;
+            cursor: pointer;
+        }
+
+            .plan-button:hover {
+                background: var(--accent-strong);
+            }
+
+        .plans-helper {
+            font-size: .8rem;
+            color: var(--text-muted);
+            margin-top: .75rem;
+        }
+
+        /* CONTACTO */
+        .contact-card {
+            background: radial-gradient(circle at top left, #020617 0, #020617 60%, #02081b 100%);
+            border-radius: 18px;
+            border: 1px solid rgba(15,23,42,.9);
+            padding: 1.4rem 1.6rem;
+            box-shadow: 0 18px 40px rgba(0,0,0,.65);
+            font-size: .9rem;
+            color: var(--text-muted);
+        }
+
+            .contact-card strong {
+                color: #e5e7eb;
+            }
+
+        footer {
+            border-top: 1px solid rgba(15,23,42,.9);
+            padding: 1.5rem;
+            font-size: .8rem;
+            color: #6b7280;
+            background: #020617;
+            text-align: center;
+        }
+
+        /* MODAL */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 540px;
+            background: linear-gradient(135deg, #020617 0, #02081b 60%, #020617 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(15,23,42,1);
+            box-shadow: 0 30px 80px rgba(0,0,0,.85);
+            padding: 1.75rem 2rem 1.5rem;
+            color: #e5e7eb;
+        }
+
+        .modal-header {
+            margin-bottom: 1rem;
+        }
+
+            .modal-header h3 {
+                margin: 0 0 .5rem;
+                font-size: 1.1rem;
+            }
+
+            .modal-header p {
+                margin: 0;
+                font-size: .9rem;
+                color: var(--text-muted);
+            }
+
+                .modal-header p strong {
+                    color: #e5e7eb;
+                }
+
+        .modal-body {
+            margin-top: 1rem;
+        }
+
+            .modal-body input {
+                width: 100%;
+                padding: .75rem .8rem;
+                border-radius: 10px;
+                border: 1px solid rgba(30,64,175,.8);
+                background: rgba(15,23,42,.9);
+                color: #e5e7eb;
+                font-size: .9rem;
+            }
+
+        .modal-actions {
+            display: flex;
+            gap: .75rem;
+            margin-top: 1.25rem;
+        }
+
+        .btn-modal-primary {
+            flex: 1;
+            border-radius: 999px;
+            border: none;
+            background: var(--accent);
+            color: #111827;
+            padding: .8rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: .9rem;
+        }
+
+            .btn-modal-primary:hover {
+                background: var(--accent-strong);
+            }
+
+        .btn-modal-secondary {
+            flex: 1;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,.6);
+            background: transparent;
+            color: #e5e7eb;
+            padding: .8rem 1rem;
+            font-size: .9rem;
             cursor: pointer;
         }
 
         .modal-hint {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-top: 12px;
+            margin-top: .8rem;
+            font-size: .75rem;
+            color: #9ca3af;
         }
 
-
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            margin: 0;
-            background: #0b0b0b;
-            color: #f5f5f5;
-        }
-
-        header {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            background: radial-gradient(circle at top, #ffcc00, #b91c1c 60%, #060606 100%);
-        }
-
-            header h1 {
-                margin: 0 0 .5rem;
-                font-size: 2rem;
-            }
-
-            header p {
-                margin: 0.3rem 0;
-                font-size: .95rem;
-            }
-
-            header .badge {
-                display: inline-block;
-                margin-top: .8rem;
-                padding: .3rem .7rem;
-                border-radius: 999px;
-                background: rgba(15, 23, 42, .85);
-                color: #facc15;
-                font-size: .75rem;
-                letter-spacing: .06em;
-                text-transform: uppercase;
-            }
-
-        main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
-        }
-
-        section {
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        @media (max-width: 900px) {
-            .hero-grid {
+        @media (max-width: 840px) {
+            .hero-columns {
                 grid-template-columns: minmax(0, 1fr);
             }
-        }
 
-        .hero-card {
-            background: radial-gradient(circle at top left, #1f2937, #020617);
-            border-radius: 1.5rem;
-            padding: 1.8rem 1.6rem;
-            border: 1px solid rgba(148, 163, 184, .4);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, .6);
-            position: relative;
-            overflow: hidden;
-        }
-
-            .hero-card::before {
-                content: "";
-                position: absolute;
-                inset: -40%;
-                background: radial-gradient(circle at 20% 0%, rgba(244, 244, 245, .08), transparent 55%), radial-gradient(circle at 80% 120%, rgba(248, 250, 252, .1), transparent 55%);
-                opacity: .7;
-                pointer-events: none;
+            .modal-content {
+                margin: 0 1rem;
+                padding: 1.5rem 1.4rem 1.3rem;
             }
-
-        .hero-card-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 1.8rem;
-            margin: 0 0 .4rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: #e5e7eb;
-            margin: 0 0 .8rem;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            font-size: .78rem;
-            padding: .25rem .7rem;
-            border-radius: 999px;
-            background: rgba(56, 189, 248, .1);
-            color: #7dd3fc;
-            border: 1px solid rgba(56, 189, 248, .4);
-            margin-bottom: .8rem;
-        }
-
-        .hero-list {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0;
-            font-size: .9rem;
-        }
-
-            .hero-list li {
-                display: flex;
-                align-items: flex-start;
-                gap: .6rem;
-                margin-bottom: .45rem;
-            }
-
-            .hero-list span.icon {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 1.3rem;
-                height: 1.3rem;
-                border-radius: 999px;
-                background: rgba(34, 197, 94, .12);
-                color: #4ade80;
-                font-size: .7rem;
-                flex-shrink: 0;
-                margin-top: .1rem;
-            }
-
-            .hero-list small {
-                display: block;
-                font-size: .75rem;
-                color: #9ca3af;
-                margin-top: .1rem;
-            }
-
-        .hero-side-card {
-            background: radial-gradient(circle at top, #0f172a, #020617);
-            border-radius: 1.3rem;
-            padding: 1.5rem 1.4rem;
-            border: 1px solid rgba(148, 163, 184, .35);
-            box-shadow: 0 16px 35px rgba(0, 0, 0, .7);
-            position: relative;
-            overflow: hidden;
-        }
-
-            .hero-side-card::before {
-                content: "";
-                position: absolute;
-                inset: -20%;
-                background: radial-gradient(circle at 0% 0%, rgba(250, 204, 21, .11), transparent 45%), radial-gradient(circle at 120% 40%, rgba(248, 250, 252, .1), transparent 50%);
-                opacity: .9;
-                pointer-events: none;
-            }
-
-        .hero-side-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-side-title {
-            font-size: 1.15rem;
-            margin: 0 0 .4rem;
-        }
-
-        .hero-side-sub {
-            font-size: .9rem;
-            margin: 0 0 .8rem;
-            color: #d1d5db;
-        }
-
-        .hero-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem;
-            font-size: .75rem;
-            margin-bottom: 1rem;
-        }
-
-        .pill {
-            padding: .2rem .55rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, .65);
-            background: rgba(15, 23, 42, .9);
-            color: #e5e7eb;
-        }
-
-        .hero-side-footer {
-            font-size: .78rem;
-            color: #9ca3af;
-            border-top: 1px dashed rgba(75, 85, 99, .9);
-            padding-top: .7rem;
-            margin-top: .8rem;
-        }
-
-            .hero-side-footer strong {
-                color: #facc15;
-            }
-
-        .section-title {
-            font-size: 1.4rem;
-            margin-bottom: .4rem;
-        }
-
-        .section-sub {
-            font-size: .9rem;
-            color: #9ca3af;
-            max-width: 640px;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-        }
-
-        .benefit-card {
-            background: #020617;
-            border-radius: 1rem;
-            padding: 1rem .9rem;
-            border: 1px solid #1f2937;
-        }
-
-            .benefit-card h3 {
-                margin: 0 0 .4rem;
-                font-size: 1rem;
-            }
-
-            .benefit-card p {
-                margin: 0;
-                font-size: .85rem;
-                color: #9ca3af;
-            }
-
-        .badge-pill {
-            display: inline-block;
-            font-size: .7rem;
-            padding: .15rem .5rem;
-            border-radius: 999px;
-            background: rgba(55, 65, 81, .8);
-            color: #e5e7eb;
-            margin-bottom: .4rem;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-        }
-
-        .card {
-            background: #020617;
-            border-radius: 1.1rem;
-            padding: 1.3rem 1.1rem;
-            border: 1px solid #1f2937;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .card::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: radial-gradient(circle at top right, rgba(251, 191, 36, .12), transparent 55%);
-                opacity: 0;
-                transition: opacity .2s ease-out;
-                pointer-events: none;
-            }
-
-            .card:hover::before {
-                opacity: 1;
-            }
-
-        .badge {
-            display: inline-block;
-            font-size: .7rem;
-            padding: .15rem .5rem;
-            border-radius: 999px;
-            background: rgba(55, 65, 81, .85);
-            margin-bottom: .4rem;
-            color: #f9fafb;
-        }
-
-            .badge.recommended {
-                background: rgba(249, 115, 22, .85);
-                color: #111827;
-            }
-
-        .card h3 {
-            margin: 0 0 .4rem;
-            font-size: 1rem;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: .85rem;
-            color: #d1d5db;
-        }
-
-        .card .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-top: .5rem;
-        }
-
-        .btn-buy {
-            margin-top: 1rem;
-            padding: .7rem 1rem;
-            border-radius: 999px;
-            border: none;
-            background: #f97316;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-            .btn-buy:hover {
-                opacity: .9;
-            }
-
-        form {
-            margin-top: 2rem;
-            display: grid;
-            gap: 1rem;
-            max-width: 480px;
-        }
-
-        label {
-            font-size: .9rem;
-            display: block;
-            margin-bottom: .2rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: .6rem .7rem;
-            border-radius: .5rem;
-            border: 1px solid #374151;
-            background: #020617;
-            color: #f9fafb;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: .8rem;
-            color: #9ca3af;
-            border-top: 1px solid #1f2937;
-            background: #020617;
         }
     </style>
 </head>
 <body>
+    <!-- HERO -->
     <header>
-        <h1>Spelling Bee Contest – Licencias para escuelas</h1>
-        <p>Herramienta interactiva para organizar concursos de deletreo en inglés con rúbricas, rondas y control de tiempo.</p>
-        <p class="badge">Piloto educativo · Aleteo Studios</p>
+        <div class="hero-inner">
+            <div>
+                <div class="hero-label">
+                    <span>Spelling Bee Contest · Módulo para escuelas</span>
+                </div>
+                <h1 class="hero-title">Licencias profesionales para concursos de deletreo en inglés</h1>
+                <p class="hero-subtitle">
+                    Gestiona participantes, rondas, listas de palabras y puntuaciones en tiempo real.
+                    Diseñado para docentes, coordinaciones académicas y eventos institucionales.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn-pill-primary">Piloto educativo · Aleteo Studios</button>
+                    <button class="btn-pill-secondary">Solicitar demostración guiada</button>
+                </div>
+            </div>
+
+            <div class="hero-columns">
+                <article class="hero-card">
+                    <h2>Panel para docentes</h2>
+                    <h3>Convierte tu Spelling Bee en una experiencia profesional</h3>
+                    <ul class="hero-benefits">
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Rondas personalizadas, marcador en vivo y control de eliminación por error.</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Biblioteca de palabras configurable por nivel, temática o grado escolar.</span>
+                        </li>
+                        <li>
+                            <span class="icon">✓</span>
+                            <span>Diseñado para proyectarse en aula, auditorio o eventos intercolegiales.</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="hero-card">
+                    <h2>Licencias educativas</h2>
+                    <h3>Elige el plan que se adapta al contexto de tu institución</h3>
+                    <ul class="hero-benefits">
+                        <li>
+                            <span class="icon">●</span>
+                            <span>Modo docente y modo público para proyección en pantalla grande.</span>
+                        </li>
+                        <li>
+                            <span class="icon">●</span>
+                            <span>Paquetes mensuales, anuales o perpetuos para proyectos institucionales.</span>
+                        </li>
+                        <li>
+                            <span class="icon">●</span>
+                            <span>
+                                Parte del portafolio educativo de <strong>Aleteo Studios</strong>, estudio de animación,
+                                videojuegos y experiencias interactivas para educación.
+                            </span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </div>
     </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
-        <section>
-            <div class="hero-grid">
-                <div class="hero-card">
-                    <div class="hero-card-content">
-                        <span class="hero-badge">Spelling Bee Contest · Módulo para docentes</span>
-                        <h2 class="hero-title">Convierte tu Spelling Bee en una experiencia profesional</h2>
-                        <p class="hero-subtitle">
-                            Gestiona participantes, rondas, palabras y puntuaciones en tiempo real,
-                            todo desde una aplicación diseñada para docentes.
-                        </p>
+        <div class="main-inner">
+            <!-- PLANES -->
+            <section>
+                <h2 class="section-title">Paquetes de licenciamiento</h2>
+                <p class="section-subtitle">
+                    Elige el plan que mejor se adapte a tu escuela. Los precios están pensados para instituciones que
+                    desean probar el sistema en un evento piloto o integrarlo como parte de sus actividades anuales.
+                </p>
 
-                        <ul class="hero-list">
-                            <li>
-                                <span class="icon">✓</span>
-                                <div>
-                                    <strong>Control completo del concurso</strong>
-                                    <small>Rondas personalizadas, eliminación por error, marcador de participantes y vista para público.</small>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="icon">✓</span>
-                                <div>
-                                    <strong>Biblioteca de palabras configurables</strong>
-                                    <small>Listas por nivel, temática o grado escolar. Posibilidad de importar palabras propias en siguientes versiones.</small>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="icon">✓</span>
-                                <div>
-                                    <strong>Diseñado para escuelas, universidades y academias de idiomas</strong>
-                                    <small>Ideal para eventos internos, semanas culturales, ferias del idioma o concursos intercolegiales.</small>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <div id="plans-container" class="plans-grid">
+                    <!-- Aquí se cargarán los paquetes desde el backend -->
                 </div>
+                <p class="plans-helper">
+                    Más adelante conectaremos estos botones con el sistema de pago y licencias definitivas.
+                </p>
+            </section>
 
-                <aside class="hero-side-card">
-                    <div class="hero-side-content">
-                        <h3 class="hero-side-title">Licencias educativas por institución</h3>
-                        <p class="hero-side-sub">
-                            Elige el paquete que se adapta a tu contexto: piloto mensual, licencia anual o versión
-                            perpetua personalizada para tu institución.
-                        </p>
-                        <div class="hero-pills">
-                            <span class="pill">Modo docente y modo público</span>
-                            <span class="pill">Rondas configurables</span>
-                            <span class="pill">Panel para jueces</span>
-                            <span class="pill">Diseño pensado para proyectarse en aula o auditorio</span>
-                        </div>
-                        <div class="hero-side-footer">
-                            <strong>Spelling Bee Contest</strong> forma parte del portafolio educativo de
-                            <strong>Aleteo Studios</strong>, estudio de animación, videojuegos y experiencias interactivas para educación.
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </section>
+            <!-- CONTACTO -->
+            <section>
+                <h2 class="section-title">Datos de contacto de la escuela</h2>
+                <p class="section-subtitle">
+                    Si te interesa recibir una demostración guiada o una cotización institucional,
+                    comparte los datos de tu escuela. La información se utilizará solo para fines de contacto educativo
+                    relacionados con Spelling Bee Contest.
+                </p>
 
-        <section id="paquetes">
-            <h2 class="section-title">Paquetes de licenciamiento</h2>
-            <p class="section-sub">
-                Elige el plan que mejor se adapte a tu escuela. Los precios están pensados para instituciones
-                que desean probar el sistema en un evento piloto o integrarlo como parte de sus actividades anuales.
-                Más adelante conectaremos estos botones con el sistema de pago y licencias.
-            </p>
-
-            <!-- Aquí se llenan las tarjetas dinámicamente desde el backend -->
-            <div id="plans-container" class="cards"></div>
-        </section>
-
-        <section id="contacto">
-            <h2 class="section-title" style="margin-top:3rem;">Datos de contacto de la escuela</h2>
-            <p class="section-sub">
-                Si te interesa recibir una demostración guiada o una cotización institucional,
-                comparte los datos de tu escuela. Usaremos esta información solo para fines de contacto
-                relacionados con Spelling Bee Contest.
-            </p>
-
-            <form>
-                <div>
-                    <label for="school-name">Nombre de la escuela o institución</label>
-                    <input type="text" id="school-name" name="school-name" placeholder="Ej. Instituto Bilingüe Hidalgo" />
+                <div class="contact-card">
+                    <p>
+                        <strong>¿Cómo funciona el proceso?</strong><br />
+                        1) Seleccionas el paquete que se adapta a tu contexto.<br />
+                        2) Realizamos una demostración guiada del sistema.<br />
+                        3) Activamos la licencia para tu institución y te acompañamos en la primera edición del concurso.
+                    </p>
+                    <p style="margin-top: .75rem;">
+                        Para más información, escribe a:
+                        <strong>aletostudios@gmail.com</strong>
+                    </p>
                 </div>
-                <div>
-                    <label for="contact-name">Nombre de la persona de contacto</label>
-                    <input type="text" id="contact-name" name="contact-name" placeholder="Coordinador(a) académico, docente, etc." />
-                </div>
-                <div>
-                    <label for="email">Correo electrónico de contacto</label>
-                    <input type="email" id="email" name="email" placeholder="correo@escuela.edu.mx" />
-                </div>
-                <div>
-                    <label for="phone">Teléfono o WhatsApp</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Opcional, para coordinar demo" />
-                </div>
-                <div>
-                    <label for="details">Comentarios adicionales sobre tu Spelling Bee</label>
-                    <textarea id="details" name="details" rows="3" placeholder="Ej. Número aproximado de participantes, nivel educativo, fecha tentativa del concurso, etc."></textarea>
-                </div>
-                <button type="button" class="btn-buy">
-                    Enviar interés (próximamente)
-                </button>
-            </form>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
-        © 2026 Spelling Bee Contest · Aleteo Studios. Herramientas interactivas para educación.
+        Spelling Bee Contest · Piloto educativo desarrollado por Aleteo Studios · Uso académico y demostrativo.
     </footer>
 
+    <!-- MODAL DE COMPRA -->
+    <div id="purchase-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Comprar licencia</h3>
+                <p>
+                    Ingresa el correo de contacto de la escuela.<br />
+                    <strong>Serás redirigido al sistema de pago.</strong>
+                </p>
+            </div>
+            <div class="modal-body">
+                <input type="email"
+                       id="purchase-email"
+                       placeholder="correo@escuela.com"
+                       autocomplete="email" />
+                <div class="modal-actions">
+                    <button id="confirm-purchase" class="btn-modal-primary">
+                        Continuar pago
+                    </button>
+                    <button id="close-modal" class="btn-modal-secondary">
+                        Cancelar
+                    </button>
+                </div>
+                <p class="modal-hint">
+                    * Este correo se usará para generar y activar la licencia de Spelling Bee Contest.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
     <script>
     const API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
+    let selectedPackageId = null;
 
+    function getBadgeLabel(pkg) {
+      if (pkg.id === 'PAQ1') return 'Mensual';
+      if (pkg.id === 'PAQ2') return 'Anual';
+      if (pkg.id === 'PAQ3') return 'Perpetua';
+      return 'Licencia';
+    }
+
+    function getDurationLabel(pkg) {
+      if (!pkg.duration_days) return 'Vigencia: Perpetua';
+      if (pkg.duration_days === 30) return 'Vigencia: 30 días';
+      if (pkg.duration_days >= 360) return 'Vigencia: 1 año';
+      return 'Vigencia: ' + pkg.duration_days + ' días';
+    }
+
+    function formatPriceMXN(value) {
+      return new Intl.NumberFormat('es-MX', {
+        style: 'currency',
+        currency: 'MXN',
+        maximumFractionDigits: 0
+      }).format(value || 0);
+    }
+
+    // Abre el modal de compra
+    function openPurchaseModal(packageId, packageName) {
+      selectedPackageId = packageId;
+      const modal = document.getElementById('purchase-modal');
+      const title = document.getElementById('modal-title');
+      const emailInput = document.getElementById('purchase-email');
+
+      if (!modal || !title || !emailInput) return;
+
+      title.textContent = 'Comprar: ' + packageName;
+      emailInput.value = '';
+      modal.classList.remove('hidden');
+      emailInput.focus();
+    }
+
+    // Carga los paquetes desde el backend
     async function loadPackages() {
+      const container = document.getElementById('plans-container');
+      if (!container) return;
+
+      container.innerHTML = '<p style="color:#9ca3af;font-size:.85rem;">Cargando paquetes de licenciamiento…</p>';
+
       try {
         const res = await fetch(`${API_BASE}/api/packages`);
         const json = await res.json();
 
         if (!json.ok) {
           console.error('Error al cargar paquetes:', json.error);
+          container.innerHTML =
+            '<p style="color:#f87171;font-size:.85rem;">Ocurrió un error al cargar los paquetes. Intenta más tarde.</p>';
           return;
         }
 
-        const container = document.getElementById('plans-container');
-        if (!container) {
-          console.error('No se encontró el contenedor #plans-container');
-          return;
-        }
-
+        const packages = json.packages || [];
         container.innerHTML = '';
 
-        json.packages.forEach(pkg => {
+        packages.forEach((pkg) => {
           const card = document.createElement('article');
-          card.className = 'card';
+          card.className = 'plan-card';
 
-          card.innerHTML = `
-              <h3>${pkg.name}</h3>
-              <p class="price">$${pkg.price_mxn} MXN</p>
-              <p>Vigencia: ${pkg.duration_days ? pkg.duration_days + ' días' : 'Perpetua'}</p>
-              <button class="btn-buy" data-package-id="${pkg.id}">
-                Comprar
-              </button>
-            `;
+          const badge = document.createElement('span');
+          badge.className = 'plan-badge';
+          badge.textContent = getBadgeLabel(pkg);
+
+          const title = document.createElement('h3');
+          title.className = 'plan-title';
+          title.textContent = pkg.name;
+
+          const desc = document.createElement('p');
+          desc.className = 'plan-desc';
+          desc.textContent =
+            'Incluye acceso al módulo de docentes, control de rondas y listas de palabras configurables.';
+
+          const price = document.createElement('p');
+          price.className = 'plan-price';
+          price.textContent = formatPriceMXN(pkg.price_mxn);
+
+          const meta = document.createElement('p');
+          meta.className = 'plan-meta';
+          meta.textContent = getDurationLabel(pkg);
+
+          const footer = document.createElement('div');
+          footer.className = 'plan-footer';
+
+          const btn = document.createElement('button');
+          btn.className = 'plan-button';
+          btn.textContent = 'Comprar';
+          btn.dataset.packageId = pkg.id;
+
+          btn.addEventListener('click', () => {
+            openPurchaseModal(pkg.id, pkg.name);
+          });
+
+          footer.appendChild(btn);
+          card.appendChild(badge);
+          card.appendChild(title);
+          card.appendChild(desc);
+          card.appendChild(price);
+          card.appendChild(meta);
+          card.appendChild(footer);
 
           container.appendChild(card);
         });
 
-        // Conectar botones al checkout-test
-       container.addEventListener('click', (event) => {
-  const btn = event.target.closest('.btn-buy');
-  if (!btn) return;
-
-  selectedPackageId = btn.dataset.packageId;
-  const packageName =
-    btn.closest('.card').querySelector('h3')?.textContent || 'Licencia';
-
-  openPurchaseModal(selectedPackageId, packageName);
-});
-
-
+        if (packages.length === 0) {
+          container.innerHTML =
+            '<p style="color:#9ca3af;font-size:.85rem;">Por el momento no hay paquetes configurados.</p>';
+        }
       } catch (err) {
         console.error('Error inesperado cargando paquetes:', err);
+        container.innerHTML =
+          '<p style="color:#f87171;font-size:.85rem;">Ocurrió un error al cargar los paquetes. Intenta más tarde.</p>';
       }
     }
 
-    // Cargar paquetes cuando la página esté lista
-    document.addEventListener('DOMContentLoaded', loadPackages);
+    document.addEventListener('DOMContentLoaded', () => {
+      // Eventos del modal
+      const modal = document.getElementById('purchase-modal');
+      const btnClose = document.getElementById('close-modal');
+      const btnConfirm = document.getElementById('confirm-purchase');
 
-    let selectedPackageId = null;
+      if (btnClose) {
+        btnClose.addEventListener('click', () => {
+          modal.classList.add('hidden');
+        });
+      }
 
-function openPurchaseModal(packageId, packageName) {
-  selectedPackageId = packageId;
-  document.getElementById('modal-title').textContent =
-    'Comprar: ' + packageName;
-  document.getElementById('purchase-email').value = '';
-  document.getElementById('purchase-modal').classList.remove('hidden');
-}
+      if (btnConfirm) {
+        btnConfirm.addEventListener('click', async () => {
+          const emailInput = document.getElementById('purchase-email');
+          const email = emailInput.value.trim();
 
-document.getElementById('close-modal').onclick = () => {
-  document.getElementById('purchase-modal').classList.add('hidden');
-};
+          if (!email) {
+            alert('Por favor ingresa un correo válido.');
+            emailInput.focus();
+            return;
+          }
 
-document.getElementById('confirm-purchase').onclick = async () => {
-  const email = document.getElementById('purchase-email').value.trim();
+          try {
+            const res = await fetch(
+              `${API_BASE}/api/checkout-test?package_id=${encodeURIComponent(
+                selectedPackageId
+              )}&email=${encodeURIComponent(email)}`
+            );
+            const data = await res.json();
 
-  if (!email) {
-    alert('Ingresa un correo válido');
-    return;
-  }
+            if (!data.ok) {
+              alert('Ocurrió un error al iniciar el pago.');
+              return;
+            }
 
-  const res = await fetch(
-    `https://spelling-bee-contest-backend.vercel.app/api/checkout-test?package_id=${selectedPackageId}&email=${encodeURIComponent(
-      email
-    )}`
-  );
+            // Aquí luego se reemplazará por la URL real de Mercado Pago
+            window.location.href = data.fake_payment_url;
+          } catch (err) {
+            console.error(err);
+            alert('Error inesperado al iniciar el pago.');
+          }
+        });
+      }
 
-  const data = await res.json();
-  window.location.href = data.fake_payment_url;
-};
-
+      // Cargar planes
+      loadPackages();
+    });
     </script>
-
-    <!-- Modal de compra -->
-    <div id="purchase-modal" class="modal hidden">
-        <div class="modal-content">
-            <h3 id="modal-title">Comprar licencia</h3>
-
-            <p class="modal-description">
-                Ingresa el correo de contacto de la escuela.
-                <br />
-                <strong>Serás redirigido al sistema de pago.</strong>
-            </p>
-
-            <input type="email"
-                   id="purchase-email"
-                   placeholder="correo@escuela.com"
-                   required />
-
-            <div class="modal-actions">
-                <button id="confirm-purchase" class="btn-primary">
-                    Continuar pago
-                </button>
-                <button id="close-modal" class="btn-secondary">
-                    Cancelar
-                </button>
-            </div>
-
-            <p class="modal-hint">
-                * Este correo se usará para generar y activar la licencia.
-            </p>
-        </div>
-    </div>
-
 </body>
 </html>
