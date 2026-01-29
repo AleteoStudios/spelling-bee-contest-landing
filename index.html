@@ -5,6 +5,87 @@
     <title>Spelling Bee Contest – Licencias Educativas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
+        /* ===== MODAL ===== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+            .modal.hidden {
+                display: none;
+            }
+
+        .modal-content {
+            background: linear-gradient(145deg, #0b1220, #020617);
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 420px;
+            color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+            .modal-content h3 {
+                margin-bottom: 8px;
+            }
+
+        .modal-description {
+            font-size: 0.9rem;
+            color: #cbd5f5;
+            margin-bottom: 16px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: #f97316;
+            color: #000;
+            border: none;
+            border-radius: 999px;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            flex: 1;
+            background: transparent;
+            border: 1px solid #64748b;
+            color: #e5e7eb;
+            border-radius: 999px;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .modal-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 12px;
+        }
+
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             margin: 0;
@@ -519,40 +600,17 @@
         });
 
         // Conectar botones al checkout-test
-        container.addEventListener('click', async (event) => {
-          const btn = event.target.closest('.btn-buy');
-          if (!btn) return;
+       container.addEventListener('click', (event) => {
+  const btn = event.target.closest('.btn-buy');
+  if (!btn) return;
 
-          const packageId = btn.dataset.packageId;
-          const email = prompt('Ingresa tu correo de contacto para la cotización:');
-          if (!email) return;
+  selectedPackageId = btn.dataset.packageId;
+  const packageName =
+    btn.closest('.card').querySelector('h3')?.textContent || 'Licencia';
 
-          try {
-            const res = await fetch(
-              `${API_BASE}/api/checkout-test?package_id=${encodeURIComponent(packageId)}&email=${encodeURIComponent(email)}`
-            );
-            const data = await res.json();
+  openPurchaseModal(selectedPackageId, packageName);
+});
 
-            if (!data.ok) {
-              alert('Ocurrió un error en el checkout de prueba: ' + (data.error || ''));
-              return;
-            }
-
-            // Por ahora solo mostramos la URL fake.
-            // Más adelante aquí redirigimos a Mercado Pago.
-            alert(
-              `Checkout de prueba creado:\n\n` +
-              `Paquete: ${data.package.name}\n` +
-              `Precio: $${data.package.price_mxn} MXN\n` +
-              `Email: ${data.contact_email}\n\n` +
-              `URL de pago (fake): ${data.fake_payment_url}`
-            );
-
-          } catch (err) {
-            console.error(err);
-            alert('Error inesperado al hacer el checkout de prueba.');
-          }
-        });
 
       } catch (err) {
         console.error('Error inesperado cargando paquetes:', err);
@@ -561,6 +619,71 @@
 
     // Cargar paquetes cuando la página esté lista
     document.addEventListener('DOMContentLoaded', loadPackages);
+
+    let selectedPackageId = null;
+
+function openPurchaseModal(packageId, packageName) {
+  selectedPackageId = packageId;
+  document.getElementById('modal-title').textContent =
+    'Comprar: ' + packageName;
+  document.getElementById('purchase-email').value = '';
+  document.getElementById('purchase-modal').classList.remove('hidden');
+}
+
+document.getElementById('close-modal').onclick = () => {
+  document.getElementById('purchase-modal').classList.add('hidden');
+};
+
+document.getElementById('confirm-purchase').onclick = async () => {
+  const email = document.getElementById('purchase-email').value.trim();
+
+  if (!email) {
+    alert('Ingresa un correo válido');
+    return;
+  }
+
+  const res = await fetch(
+    `https://spelling-bee-contest-backend.vercel.app/api/checkout-test?package_id=${selectedPackageId}&email=${encodeURIComponent(
+      email
+    )}`
+  );
+
+  const data = await res.json();
+  window.location.href = data.fake_payment_url;
+};
+
     </script>
+
+    <!-- Modal de compra -->
+    <div id="purchase-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modal-title">Comprar licencia</h3>
+
+            <p class="modal-description">
+                Ingresa el correo de contacto de la escuela.
+                <br />
+                <strong>Serás redirigido al sistema de pago.</strong>
+            </p>
+
+            <input type="email"
+                   id="purchase-email"
+                   placeholder="correo@escuela.com"
+                   required />
+
+            <div class="modal-actions">
+                <button id="confirm-purchase" class="btn-primary">
+                    Continuar pago
+                </button>
+                <button id="close-modal" class="btn-secondary">
+                    Cancelar
+                </button>
+            </div>
+
+            <p class="modal-hint">
+                * Este correo se usará para generar y activar la licencia.
+            </p>
+        </div>
+    </div>
+
 </body>
 </html>
