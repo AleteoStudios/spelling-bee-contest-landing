@@ -117,107 +117,185 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Spelling Bee Contest</h1>
-    <p>Licencias educativas para digitalizar tus concursos de spelling bee sin papel, sin errores y con una experiencia profesional para tu escuela.</p>
-    <button class="btn-primary" onclick="scrollToPackages()">Ver paquetes de licencias</button>
-  </header>
+    <header>
+        <h1>Spelling Bee Contest 1</h1>
+        <p>Licencias educativas para digitalizar tus concursos de spelling bee sin papel, sin errores y con una experiencia profesional para tu escuela.</p>
+        <button class="btn-primary" onclick="scrollToPackages()">Ver paquetes de licencias</button>
+    </header>
 
-  <main>
-    <section id="paquetes">
-      <h2 class="section-title">Paquetes de licenciamiento</h2>
-      <p>Elige el plan que mejor se adapte a tu escuela. Más adelante conectaremos estos botones con el sistema de pago y licencias.</p>
+    <main>
+        <section id="paquetes">
+            <h2 class="section-title">Paquetes de licenciamiento</h2>
+            <p>Elige el plan que mejor se adapte a tu escuela. Más adelante conectaremos estos botones con el sistema de pago y licencias.</p>
 
-      <div class="cards">
-        <!-- PAQ1 -->
-        <article class="card">
-          <span class="badge">Mensual · Piloto</span>
-          <h3>Paquete 1 – Licencia Mensual Básica</h3>
-          <p>Ideal para pruebas piloto y actividades puntuales. Incluye 5 rondas de palabras precargadas y temporizador fijo de 20 segundos.</p>
-          <p class="price">$250 MXN</p>
-          <button class="btn-buy" onclick="comprar('PAQ1')">Comprar Paquete 1</button>
-        </article>
+            <div class="cards">
+                <!-- PAQ1 -->
+                <article class="card">
+                    <span class="badge">Mensual · Piloto</span>
+                    <h3>Paquete 1 – Licencia Mensual Básica</h3>
+                    <p>Ideal para pruebas piloto y actividades puntuales. Incluye 5 rondas de palabras precargadas y temporizador fijo de 20 segundos.</p>
+                    <p class="price">$250 MXN</p>
+                    <button class="btn-buy" onclick="comprar('PAQ1')">Comprar Paquete 1</button>
+                </article>
 
-        <!-- PAQ2 -->
-        <article class="card">
-          <span class="badge">Recomendado</span>
-          <h3>Paquete 2 – Licencia Anual Institucional</h3>
-          <p>Diseñado para integrar Spelling Bee Contest al ciclo escolar completo. Permite crear y editar listas personalizadas y ajustar el temporizador.</p>
-          <p class="price">$1,550 MXN / año</p>
-          <button class="btn-buy" onclick="comprar('PAQ2')">Comprar Paquete 2</button>
-        </article>
+                <!-- PAQ2 -->
+                <article class="card">
+                    <span class="badge">Recomendado</span>
+                    <h3>Paquete 2 – Licencia Anual Institucional</h3>
+                    <p>Diseñado para integrar Spelling Bee Contest al ciclo escolar completo. Permite crear y editar listas personalizadas y ajustar el temporizador.</p>
+                    <p class="price">$1,550 MXN / año</p>
+                    <button class="btn-buy" onclick="comprar('PAQ2')">Comprar Paquete 2</button>
+                </article>
 
-        <!-- PAQ3 -->
-        <article class="card">
-          <span class="badge">Perpetuo</span>
-          <h3>Paquete 3 – Licencia Perpetua Personalizada</h3>
-          <p>Experiencia institucional a la medida, con personalización visual (logo de la escuela, fondos y branding educativo).</p>
-          <p class="price">$3,500 MXN pago único</p>
-          <button class="btn-buy" onclick="comprar('PAQ3')">Comprar Paquete 3</button>
-        </article>
-      </div>
-    </section>
+                <!-- PAQ3 -->
+                <article class="card">
+                    <span class="badge">Perpetuo</span>
+                    <h3>Paquete 3 – Licencia Perpetua Personalizada</h3>
+                    <p>Experiencia institucional a la medida, con personalización visual (logo de la escuela, fondos y branding educativo).</p>
+                    <p class="price">$3,500 MXN pago único</p>
+                    <button class="btn-buy" onclick="comprar('PAQ3')">Comprar Paquete 3</button>
+                </article>
+            </div>
+        </section>
 
-    <section id="contacto">
-      <h2 class="section-title" style="margin-top:3rem;">Datos de contacto de la escuela</h2>
-      <p>En el siguiente paso conectaremos este formulario con el backend y Mercado Pago. Por ahora solo es para estructurar el flujo.</p>
+        <section id="contacto">
+            <h2 class="section-title" style="margin-top:3rem;">Datos de contacto de la escuela</h2>
+            <p>En el siguiente paso conectaremos este formulario con el backend y Mercado Pago. Por ahora solo es para estructurar el flujo.</p>
 
-      <form onsubmit="enviarFormulario(event)">
-        <div>
-          <label for="nombre">Nombre de contacto</label>
-          <input id="nombre" name="nombre" required />
-        </div>
-        <div>
-          <label for="institucion">Nombre de la institución</label>
-          <input id="institucion" name="institucion" required />
-        </div>
-        <div>
-          <label for="email">Correo electrónico</label>
-          <input id="email" name="email" type="email" required />
-        </div>
-        <div>
-          <label for="paquete">Paquete de interés</label>
-          <select id="paquete" name="paquete" required>
-            <option value="">Selecciona una opción</option>
-            <option value="PAQ1">Paquete 1 – Mensual</option>
-            <option value="PAQ2">Paquete 2 – Anual</option>
-            <option value="PAQ3">Paquete 3 – Perpetuo</option>
-          </select>
-        </div>
-        <button class="btn-primary" type="submit">Enviar interés (modo maqueta)</button>
-      </form>
-    </section>
-  </main>
+            <form onsubmit="enviarFormulario(event)">
+                <div>
+                    <label for="nombre">Nombre de contacto</label>
+                    <input id="nombre" name="nombre" required />
+                </div>
+                <div>
+                    <label for="institucion">Nombre de la institución</label>
+                    <input id="institucion" name="institucion" required />
+                </div>
+                <div>
+                    <label for="email">Correo electrónico</label>
+                    <input id="email" name="email" type="email" required />
+                </div>
+                <div>
+                    <label for="paquete">Paquete de interés</label>
+                    <select id="paquete" name="paquete" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="PAQ1">Paquete 1 – Mensual</option>
+                        <option value="PAQ2">Paquete 2 – Anual</option>
+                        <option value="PAQ3">Paquete 3 – Perpetuo</option>
+                    </select>
+                </div>
+                <button class="btn-primary" type="submit">Enviar interés (modo maqueta)</button>
+            </form>
+        </section>
+    </main>
 
-  <footer>
-    Aleteo Animation &amp; Game Studios · Spelling Bee Contest · Esta es una versión preliminar de la landing.
-  </footer>
+    <footer>
+        Aleteo Animation &amp; Game Studios · Spelling Bee Contest · Esta es una versión preliminar de la landing.
+    </footer>
 
-  <script>
-    function scrollToPackages() {
-      document.getElementById('paquetes').scrollIntoView({ behavior: 'smooth' });
-    }
+    <script>
+        function scrollToPackages() {
+            document.getElementById('paquetes').scrollIntoView({ behavior: 'smooth' });
+        }
 
-    function comprar(paqueteId) {
-      alert('Más adelante este botón abrirá el pago para ' + paqueteId + '.');
-    }
+        function comprar(paqueteId) {
+            alert('Más adelante este botón abrirá el pago para ' + paqueteId + '.');
+        }
 
-    function enviarFormulario(e) {
-      e.preventDefault();
-      const nombre = document.getElementById('nombre').value;
-      const institucion = document.getElementById('institucion').value;
-      const email = document.getElementById('email').value;
-      const paquete = document.getElementById('paquete').value;
+        function enviarFormulario(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const institucion = document.getElementById('institucion').value;
+            const email = document.getElementById('email').value;
+            const paquete = document.getElementById('paquete').value;
 
-      alert(
-        'Formulario en modo maqueta.\n\n' +
-        'Nombre: ' + nombre + '\n' +
-        'Institución: ' + institucion + '\n' +
-        'Email: ' + email + '\n' +
-        'Paquete: ' + paquete + '\n\n' +
-        'En el siguiente paso conectaremos esto con el backend en Vercel y Mercado Pago.'
-      );
-    }
-  </script>
+            alert(
+                'Formulario en modo maqueta.\n\n' +
+                'Nombre: ' + nombre + '\n' +
+                'Institución: ' + institucion + '\n' +
+                'Email: ' + email + '\n' +
+                'Paquete: ' + paquete + '\n\n' +
+                'En el siguiente paso conectaremos esto con el backend en Vercel y Mercado Pago.'
+            );
+        }
+    </script>
+
+    <script>
+        const API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
+
+        async function loadPackages() {
+            try {
+                const res = await fetch(`${API_BASE}/api/packages`);
+                const json = await res.json();
+
+                if (!json.ok) {
+                    console.error('Error al cargar paquetes:', json.error);
+                    return;
+                }
+
+                const container = document.getElementById('plans-container');
+                container.innerHTML = '';
+
+                json.packages.forEach(pkg => {
+                    const card = document.createElement('article');
+                    card.className = 'plan-card';
+
+                    card.innerHTML = `
+              <h3>${pkg.name}</h3>
+              <p class="plan-price">$${pkg.price_mxn} MXN</p>
+              <p>Vigencia: ${pkg.duration_days ? pkg.duration_days + ' días' : 'Perpetua'}</p>
+              <button class="plan-button" data-package-id="${pkg.id}">
+                Comprar
+              </button>
+            `;
+
+                    container.appendChild(card);
+                });
+
+                // Conectar botones al checkout-test
+                container.addEventListener('click', async (event) => {
+                    const btn = event.target.closest('.plan-button');
+                    if (!btn) return;
+
+                    const packageId = btn.dataset.packageId;
+                    const email = prompt('Ingresa tu correo de contacto para la cotización:');
+                    if (!email) return;
+
+                    try {
+                        const res = await fetch(
+                            `${API_BASE}/api/checkout-test?package_id=${encodeURIComponent(packageId)}&email=${encodeURIComponent(email)}`
+                        );
+                        const data = await res.json();
+
+                        if (!data.ok) {
+                            alert('Ocurrió un error en el checkout de prueba: ' + (data.error || ''));
+                            return;
+                        }
+
+                        // Por ahora solo mostramos la URL fake.
+                        // Más adelante aquí redirigimos a Mercado Pago.
+                        alert(
+                            `Checkout de prueba creado:\n\n` +
+                            `Paquete: ${data.package.name}\n` +
+                            `Precio: $${data.package.price_mxn} MXN\n` +
+                            `Email: ${data.contact_email}\n\n` +
+                            `URL de pago (fake): ${data.fake_payment_url}`
+                        );
+
+                    } catch (err) {
+                        console.error(err);
+                        alert('Error inesperado al hacer el checkout de prueba.');
+                    }
+                });
+
+            } catch (err) {
+                console.error('Error inesperado cargando paquetes:', err);
+            }
+        }
+
+        // Cargar paquetes cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', loadPackages);
+    </script>
+
 </body>
 </html>
