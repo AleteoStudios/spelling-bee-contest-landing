@@ -1,224 +1,485 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Spelling Bee Contest – Licencias Educativas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      background: #0b0b0b;
-      color: #f5f5f5;
-    }
-    header {
-      padding: 2rem 1.5rem;
-      text-align: center;
-      background: radial-gradient(circle at top, #ffcc00, #b91c1c 60%, #060606 100%);
-    }
-    header h1 {
-      margin: 0 0 .5rem;
-      font-size: 2rem;
-    }
-    header p {
-      margin: 0;
-      max-width: 600px;
-      margin-inline: auto;
-    }
-    .btn-primary {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: .8rem 1.6rem;
-      border-radius: 999px;
-      border: none;
-      background: #facc15;
-      color: #111827;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
-    .section-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .card {
-      background: #111827;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      border: 1px solid #1f2937;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-    }
-    .badge {
-      display: inline-block;
-      padding: .2rem .6rem;
-      border-radius: 999px;
-      font-size: .75rem;
-      background: #1f2937;
-      color: #facc15;
-      font-weight: 600;
-    }
-    .price {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-top: .5rem;
-    }
-    .btn-buy {
-      margin-top: 1rem;
-      padding: .7rem 1rem;
-      border-radius: 999px;
-      border: none;
-      background: #f97316;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .btn-buy:hover {
-      opacity: .9;
-    }
-    form {
-      margin-top: 2rem;
-      display: grid;
-      gap: 1rem;
-      max-width: 480px;
-    }
-    label {
-      font-size: .9rem;
-      display: block;
-      margin-bottom: .25rem;
-    }
-    input, select {
-      width: 100%;
-      padding: .6rem .7rem;
-      border-radius: .5rem;
-      border: 1px solid #374151;
-      background: #020617;
-      color: #f9fafb;
-    }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: .8rem;
-      color: #9ca3af;
-      border-top: 1px solid #1f2937;
-      background: #020617;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <title>Spelling Bee Contest – Licencias Educativas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            background: #0b0b0b;
+            color: #f5f5f5;
+        }
+
+        header {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            background: radial-gradient(circle at top, #ffcc00, #b91c1c 60%, #060606 100%);
+        }
+
+            header h1 {
+                margin: 0 0 .5rem;
+                font-size: 2rem;
+            }
+
+            header p {
+                margin: 0.3rem 0;
+                font-size: .95rem;
+            }
+
+            header .badge {
+                display: inline-block;
+                margin-top: .8rem;
+                padding: .3rem .7rem;
+                border-radius: 999px;
+                background: rgba(15, 23, 42, .85);
+                color: #facc15;
+                font-size: .75rem;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+            }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .hero-card {
+            background: radial-gradient(circle at top left, #1f2937, #020617);
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.6rem;
+            border: 1px solid rgba(148, 163, 184, .4);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .6);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero-card::before {
+                content: "";
+                position: absolute;
+                inset: -40%;
+                background: radial-gradient(circle at 20% 0%, rgba(244, 244, 245, .08), transparent 55%), radial-gradient(circle at 80% 120%, rgba(248, 250, 252, .1), transparent 55%);
+                opacity: .7;
+                pointer-events: none;
+            }
+
+        .hero-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            margin: 0 0 .4rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #e5e7eb;
+            margin: 0 0 .8rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: .78rem;
+            padding: .25rem .7rem;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, .1);
+            color: #7dd3fc;
+            border: 1px solid rgba(56, 189, 248, .4);
+            margin-bottom: .8rem;
+        }
+
+        .hero-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            font-size: .9rem;
+        }
+
+            .hero-list li {
+                display: flex;
+                align-items: flex-start;
+                gap: .6rem;
+                margin-bottom: .45rem;
+            }
+
+            .hero-list span.icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.3rem;
+                height: 1.3rem;
+                border-radius: 999px;
+                background: rgba(34, 197, 94, .12);
+                color: #4ade80;
+                font-size: .7rem;
+                flex-shrink: 0;
+                margin-top: .1rem;
+            }
+
+            .hero-list small {
+                display: block;
+                font-size: .75rem;
+                color: #9ca3af;
+                margin-top: .1rem;
+            }
+
+        .hero-side-card {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            border-radius: 1.3rem;
+            padding: 1.5rem 1.4rem;
+            border: 1px solid rgba(148, 163, 184, .35);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, .7);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero-side-card::before {
+                content: "";
+                position: absolute;
+                inset: -20%;
+                background: radial-gradient(circle at 0% 0%, rgba(250, 204, 21, .11), transparent 45%), radial-gradient(circle at 120% 40%, rgba(248, 250, 252, .1), transparent 50%);
+                opacity: .9;
+                pointer-events: none;
+            }
+
+        .hero-side-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-side-title {
+            font-size: 1.15rem;
+            margin: 0 0 .4rem;
+        }
+
+        .hero-side-sub {
+            font-size: .9rem;
+            margin: 0 0 .8rem;
+            color: #d1d5db;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            font-size: .75rem;
+            margin-bottom: 1rem;
+        }
+
+        .pill {
+            padding: .2rem .55rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, .65);
+            background: rgba(15, 23, 42, .9);
+            color: #e5e7eb;
+        }
+
+        .hero-side-footer {
+            font-size: .78rem;
+            color: #9ca3af;
+            border-top: 1px dashed rgba(75, 85, 99, .9);
+            padding-top: .7rem;
+            margin-top: .8rem;
+        }
+
+            .hero-side-footer strong {
+                color: #facc15;
+            }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: .4rem;
+        }
+
+        .section-sub {
+            font-size: .9rem;
+            color: #9ca3af;
+            max-width: 640px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .benefit-card {
+            background: #020617;
+            border-radius: 1rem;
+            padding: 1rem .9rem;
+            border: 1px solid #1f2937;
+        }
+
+            .benefit-card h3 {
+                margin: 0 0 .4rem;
+                font-size: 1rem;
+            }
+
+            .benefit-card p {
+                margin: 0;
+                font-size: .85rem;
+                color: #9ca3af;
+            }
+
+        .badge-pill {
+            display: inline-block;
+            font-size: .7rem;
+            padding: .15rem .5rem;
+            border-radius: 999px;
+            background: rgba(55, 65, 81, .8);
+            color: #e5e7eb;
+            margin-bottom: .4rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #020617;
+            border-radius: 1.1rem;
+            padding: 1.3rem 1.1rem;
+            border: 1px solid #1f2937;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at top right, rgba(251, 191, 36, .12), transparent 55%);
+                opacity: 0;
+                transition: opacity .2s ease-out;
+                pointer-events: none;
+            }
+
+            .card:hover::before {
+                opacity: 1;
+            }
+
+        .badge {
+            display: inline-block;
+            font-size: .7rem;
+            padding: .15rem .5rem;
+            border-radius: 999px;
+            background: rgba(55, 65, 81, .85);
+            margin-bottom: .4rem;
+            color: #f9fafb;
+        }
+
+            .badge.recommended {
+                background: rgba(249, 115, 22, .85);
+                color: #111827;
+            }
+
+        .card h3 {
+            margin: 0 0 .4rem;
+            font-size: 1rem;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: .85rem;
+            color: #d1d5db;
+        }
+
+        .card .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: .5rem;
+        }
+
+        .btn-buy {
+            margin-top: 1rem;
+            padding: .7rem 1rem;
+            border-radius: 999px;
+            border: none;
+            background: #f97316;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+            .btn-buy:hover {
+                opacity: .9;
+            }
+
+        form {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1rem;
+            max-width: 480px;
+        }
+
+        label {
+            font-size: .9rem;
+            display: block;
+            margin-bottom: .2rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: .6rem .7rem;
+            border-radius: .5rem;
+            border: 1px solid #374151;
+            background: #020617;
+            color: #f9fafb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: .8rem;
+            color: #9ca3af;
+            border-top: 1px solid #1f2937;
+            background: #020617;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Spelling Bee Contest 1</h1>
-        <p>Licencias educativas para digitalizar tus concursos de spelling bee sin papel, sin errores y con una experiencia profesional para tu escuela.</p>
-        <button class="btn-primary" onclick="scrollToPackages()">Ver paquetes de licencias</button>
+        <h1>Spelling Bee Contest – Licencias para escuelas</h1>
+        <p>Herramienta interactiva para organizar concursos de deletreo en inglés con rúbricas, rondas y control de tiempo.</p>
+        <p class="badge">Piloto educativo · Aleteo Studios</p>
     </header>
 
     <main>
+        <section>
+            <div class="hero-grid">
+                <div class="hero-card">
+                    <div class="hero-card-content">
+                        <span class="hero-badge">Spelling Bee Contest · Módulo para docentes</span>
+                        <h2 class="hero-title">Convierte tu Spelling Bee en una experiencia profesional</h2>
+                        <p class="hero-subtitle">
+                            Gestiona participantes, rondas, palabras y puntuaciones en tiempo real,
+                            todo desde una aplicación diseñada para docentes.
+                        </p>
+
+                        <ul class="hero-list">
+                            <li>
+                                <span class="icon">✓</span>
+                                <div>
+                                    <strong>Control completo del concurso</strong>
+                                    <small>Rondas personalizadas, eliminación por error, marcador de participantes y vista para público.</small>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <div>
+                                    <strong>Biblioteca de palabras configurables</strong>
+                                    <small>Listas por nivel, temática o grado escolar. Posibilidad de importar palabras propias en siguientes versiones.</small>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon">✓</span>
+                                <div>
+                                    <strong>Diseñado para escuelas, universidades y academias de idiomas</strong>
+                                    <small>Ideal para eventos internos, semanas culturales, ferias del idioma o concursos intercolegiales.</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <aside class="hero-side-card">
+                    <div class="hero-side-content">
+                        <h3 class="hero-side-title">Licencias educativas por institución</h3>
+                        <p class="hero-side-sub">
+                            Elige el paquete que se adapta a tu contexto: piloto mensual, licencia anual o versión
+                            perpetua personalizada para tu institución.
+                        </p>
+                        <div class="hero-pills">
+                            <span class="pill">Modo docente y modo público</span>
+                            <span class="pill">Rondas configurables</span>
+                            <span class="pill">Panel para jueces</span>
+                            <span class="pill">Diseño pensado para proyectarse en aula o auditorio</span>
+                        </div>
+                        <div class="hero-side-footer">
+                            <strong>Spelling Bee Contest</strong> forma parte del portafolio educativo de
+                            <strong>Aleteo Studios</strong>, estudio de animación, videojuegos y experiencias interactivas para educación.
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
         <section id="paquetes">
             <h2 class="section-title">Paquetes de licenciamiento</h2>
-            <p>Elige el plan que mejor se adapte a tu escuela. Más adelante conectaremos estos botones con el sistema de pago y licencias.</p>
+            <p class="section-sub">
+                Elige el plan que mejor se adapte a tu escuela. Los precios están pensados para instituciones
+                que desean probar el sistema en un evento piloto o integrarlo como parte de sus actividades anuales.
+                Más adelante conectaremos estos botones con el sistema de pago y licencias.
+            </p>
 
-            <div class="cards">
-                <!-- PAQ1 -->
-                <article class="card">
-                    <span class="badge">Mensual · Piloto</span>
-                    <h3>Paquete 1 – Licencia Mensual Básica</h3>
-                    <p>Ideal para pruebas piloto y actividades puntuales. Incluye 5 rondas de palabras precargadas y temporizador fijo de 20 segundos.</p>
-                    <p class="price">$250 MXN</p>
-                    <button class="btn-buy" onclick="comprar('PAQ1')">Comprar Paquete 1</button>
-                </article>
-
-                <!-- PAQ2 -->
-                <article class="card">
-                    <span class="badge">Recomendado</span>
-                    <h3>Paquete 2 – Licencia Anual Institucional</h3>
-                    <p>Diseñado para integrar Spelling Bee Contest al ciclo escolar completo. Permite crear y editar listas personalizadas y ajustar el temporizador.</p>
-                    <p class="price">$1,550 MXN / año</p>
-                    <button class="btn-buy" onclick="comprar('PAQ2')">Comprar Paquete 2</button>
-                </article>
-
-                <!-- PAQ3 -->
-                <article class="card">
-                    <span class="badge">Perpetuo</span>
-                    <h3>Paquete 3 – Licencia Perpetua Personalizada</h3>
-                    <p>Experiencia institucional a la medida, con personalización visual (logo de la escuela, fondos y branding educativo).</p>
-                    <p class="price">$3,500 MXN pago único</p>
-                    <button class="btn-buy" onclick="comprar('PAQ3')">Comprar Paquete 3</button>
-                </article>
-            </div>
+            <!-- Aquí se llenan las tarjetas dinámicamente desde el backend -->
+            <div id="plans-container" class="cards"></div>
         </section>
 
         <section id="contacto">
             <h2 class="section-title" style="margin-top:3rem;">Datos de contacto de la escuela</h2>
-            <p>En el siguiente paso conectaremos este formulario con el backend y Mercado Pago. Por ahora solo es para estructurar el flujo.</p>
+            <p class="section-sub">
+                Si te interesa recibir una demostración guiada o una cotización institucional,
+                comparte los datos de tu escuela. Usaremos esta información solo para fines de contacto
+                relacionados con Spelling Bee Contest.
+            </p>
 
-            <form onsubmit="enviarFormulario(event)">
+            <form>
                 <div>
-                    <label for="nombre">Nombre de contacto</label>
-                    <input id="nombre" name="nombre" required />
+                    <label for="school-name">Nombre de la escuela o institución</label>
+                    <input type="text" id="school-name" name="school-name" placeholder="Ej. Instituto Bilingüe Hidalgo" />
                 </div>
                 <div>
-                    <label for="institucion">Nombre de la institución</label>
-                    <input id="institucion" name="institucion" required />
+                    <label for="contact-name">Nombre de la persona de contacto</label>
+                    <input type="text" id="contact-name" name="contact-name" placeholder="Coordinador(a) académico, docente, etc." />
                 </div>
                 <div>
-                    <label for="email">Correo electrónico</label>
-                    <input id="email" name="email" type="email" required />
+                    <label for="email">Correo electrónico de contacto</label>
+                    <input type="email" id="email" name="email" placeholder="correo@escuela.edu.mx" />
                 </div>
                 <div>
-                    <label for="paquete">Paquete de interés</label>
-                    <select id="paquete" name="paquete" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="PAQ1">Paquete 1 – Mensual</option>
-                        <option value="PAQ2">Paquete 2 – Anual</option>
-                        <option value="PAQ3">Paquete 3 – Perpetuo</option>
-                    </select>
+                    <label for="phone">Teléfono o WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Opcional, para coordinar demo" />
                 </div>
-                <button class="btn-primary" type="submit">Enviar interés (modo maqueta)</button>
+                <div>
+                    <label for="details">Comentarios adicionales sobre tu Spelling Bee</label>
+                    <textarea id="details" name="details" rows="3" placeholder="Ej. Número aproximado de participantes, nivel educativo, fecha tentativa del concurso, etc."></textarea>
+                </div>
+                <button type="button" class="btn-buy">
+                    Enviar interés (próximamente)
+                </button>
             </form>
         </section>
     </main>
 
     <footer>
-        Aleteo Animation &amp; Game Studios · Spelling Bee Contest · Esta es una versión preliminar de la landing.
+        © 2026 Spelling Bee Contest · Aleteo Studios. Herramientas interactivas para educación.
     </footer>
-
-    <script>
-        function scrollToPackages() {
-            document.getElementById('paquetes').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function comprar(paqueteId) {
-            alert('Más adelante este botón abrirá el pago para ' + paqueteId + '.');
-        }
-
-        function enviarFormulario(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre').value;
-            const institucion = document.getElementById('institucion').value;
-            const email = document.getElementById('email').value;
-            const paquete = document.getElementById('paquete').value;
-
-            alert(
-                'Formulario en modo maqueta.\n\n' +
-                'Nombre: ' + nombre + '\n' +
-                'Institución: ' + institucion + '\n' +
-                'Email: ' + email + '\n' +
-                'Paquete: ' + paquete + '\n\n' +
-                'En el siguiente paso conectaremos esto con el backend en Vercel y Mercado Pago.'
-            );
-        }
-    </script>
 
     <script>
         const API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
@@ -234,27 +495,32 @@
                 }
 
                 const container = document.getElementById('plans-container');
+                if (!container) {
+                    console.error('No se encontró el contenedor #plans-container');
+                    return;
+                }
+
                 container.innerHTML = '';
 
                 json.packages.forEach(pkg => {
                     const card = document.createElement('article');
-                    card.className = 'plan-card';
+                    card.className = 'card';
 
                     card.innerHTML = `
-              <h3>${pkg.name}</h3>
-              <p class="plan-price">$${pkg.price_mxn} MXN</p>
-              <p>Vigencia: ${pkg.duration_days ? pkg.duration_days + ' días' : 'Perpetua'}</p>
-              <button class="plan-button" data-package-id="${pkg.id}">
-                Comprar
-              </button>
-            `;
+                  <h3>${pkg.name}</h3>
+                  <p class="price">$${pkg.price_mxn} MXN</p>
+                  <p>Vigencia: ${pkg.duration_days ? pkg.duration_days + ' días' : 'Perpetua'}</p>
+                  <button class="btn-buy" data-package-id="${pkg.id}">
+                    Comprar
+                  </button>
+                `;
 
                     container.appendChild(card);
                 });
 
                 // Conectar botones al checkout-test
                 container.addEventListener('click', async (event) => {
-                    const btn = event.target.closest('.plan-button');
+                    const btn = event.target.closest('.btn-buy');
                     if (!btn) return;
 
                     const packageId = btn.dataset.packageId;
@@ -296,6 +562,5 @@
         // Cargar paquetes cuando la página esté lista
         document.addEventListener('DOMContentLoaded', loadPackages);
     </script>
-
 </body>
 </html>
