@@ -482,85 +482,85 @@
     </footer>
 
     <script>
-        const API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
+    const API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
 
-        async function loadPackages() {
-            try {
-                const res = await fetch(`${API_BASE}/api/packages`);
-                const json = await res.json();
+    async function loadPackages() {
+      try {
+        const res = await fetch(`${API_BASE}/api/packages`);
+        const json = await res.json();
 
-                if (!json.ok) {
-                    console.error('Error al cargar paquetes:', json.error);
-                    return;
-                }
-
-                const container = document.getElementById('plans-container');
-                if (!container) {
-                    console.error('No se encontró el contenedor #plans-container');
-                    return;
-                }
-
-                container.innerHTML = '';
-
-                json.packages.forEach(pkg => {
-                    const card = document.createElement('article');
-                    card.className = 'card';
-
-                    card.innerHTML = `
-                  <h3>${pkg.name}</h3>
-                  <p class="price">$${pkg.price_mxn} MXN</p>
-                  <p>Vigencia: ${pkg.duration_days ? pkg.duration_days + ' días' : 'Perpetua'}</p>
-                  <button class="btn-buy" data-package-id="${pkg.id}">
-                    Comprar
-                  </button>
-                `;
-
-                    container.appendChild(card);
-                });
-
-                // Conectar botones al checkout-test
-                container.addEventListener('click', async (event) => {
-                    const btn = event.target.closest('.btn-buy');
-                    if (!btn) return;
-
-                    const packageId = btn.dataset.packageId;
-                    const email = prompt('Ingresa tu correo de contacto para la cotización:');
-                    if (!email) return;
-
-                    try {
-                        const res = await fetch(
-                            `${API_BASE}/api/checkout-test?package_id=${encodeURIComponent(packageId)}&email=${encodeURIComponent(email)}`
-                        );
-                        const data = await res.json();
-
-                        if (!data.ok) {
-                            alert('Ocurrió un error en el checkout de prueba: ' + (data.error || ''));
-                            return;
-                        }
-
-                        // Por ahora solo mostramos la URL fake.
-                        // Más adelante aquí redirigimos a Mercado Pago.
-                        alert(
-                            `Checkout de prueba creado:\n\n` +
-                            `Paquete: ${data.package.name}\n` +
-                            `Precio: $${data.package.price_mxn} MXN\n` +
-                            `Email: ${data.contact_email}\n\n` +
-                            `URL de pago (fake): ${data.fake_payment_url}`
-                        );
-
-                    } catch (err) {
-                        console.error(err);
-                        alert('Error inesperado al hacer el checkout de prueba.');
-                    }
-                });
-
-            } catch (err) {
-                console.error('Error inesperado cargando paquetes:', err);
-            }
+        if (!json.ok) {
+          console.error('Error al cargar paquetes:', json.error);
+          return;
         }
 
-        // Cargar paquetes cuando la página esté lista
-        document.addEventListener('DOMContentLoaded', loadPackages);
+        const container = document.getElementById('plans-container');
+        if (!container) {
+          console.error('No se encontró el contenedor #plans-container');
+          return;
+        }
+
+        container.innerHTML = '';
+
+        json.packages.forEach(pkg => {
+          const card = document.createElement('article');
+          card.className = 'card';
+
+          card.innerHTML = `
+              <h3>${pkg.name}</h3>
+              <p class="price">$${pkg.price_mxn} MXN</p>
+              <p>Vigencia: ${pkg.duration_days ? pkg.duration_days + ' días' : 'Perpetua'}</p>
+              <button class="btn-buy" data-package-id="${pkg.id}">
+                Comprar
+              </button>
+            `;
+
+          container.appendChild(card);
+        });
+
+        // Conectar botones al checkout-test
+        container.addEventListener('click', async (event) => {
+          const btn = event.target.closest('.btn-buy');
+          if (!btn) return;
+
+          const packageId = btn.dataset.packageId;
+          const email = prompt('Ingresa tu correo de contacto para la cotización:');
+          if (!email) return;
+
+          try {
+            const res = await fetch(
+              `${API_BASE}/api/checkout-test?package_id=${encodeURIComponent(packageId)}&email=${encodeURIComponent(email)}`
+            );
+            const data = await res.json();
+
+            if (!data.ok) {
+              alert('Ocurrió un error en el checkout de prueba: ' + (data.error || ''));
+              return;
+            }
+
+            // Por ahora solo mostramos la URL fake.
+            // Más adelante aquí redirigimos a Mercado Pago.
+            alert(
+              `Checkout de prueba creado:\n\n` +
+              `Paquete: ${data.package.name}\n` +
+              `Precio: $${data.package.price_mxn} MXN\n` +
+              `Email: ${data.contact_email}\n\n` +
+              `URL de pago (fake): ${data.fake_payment_url}`
+            );
+
+          } catch (err) {
+            console.error(err);
+            alert('Error inesperado al hacer el checkout de prueba.');
+          }
+        });
+
+      } catch (err) {
+        console.error('Error inesperado cargando paquetes:', err);
+      }
+    }
+
+    // Cargar paquetes cuando la página esté lista
+    document.addEventListener('DOMContentLoaded', loadPackages);
     </script>
 </body>
 </html>
