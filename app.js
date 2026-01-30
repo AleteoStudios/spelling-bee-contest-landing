@@ -1,4 +1,4 @@
-const API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
+Ôªøconst API_BASE = 'https://spelling-bee-contest-backend.vercel.app';
 let selectedPackageId = null;
 
 function getBadgeLabel(pkg) {
@@ -10,9 +10,9 @@ function getBadgeLabel(pkg) {
 
 function getDurationLabel(pkg) {
     if (!pkg.duration_days) return 'Vigencia: Perpetua';
-    if (pkg.duration_days === 30) return 'Vigencia: 30 dÌas';
-    if (pkg.duration_days >= 360) return 'Vigencia: 1 aÒo';
-    return 'Vigencia: ' + pkg.duration_days + ' dÌas';
+    if (pkg.duration_days === 30) return 'Vigencia: 30 d√≠as';
+    if (pkg.duration_days >= 360) return 'Vigencia: 1 a√±o';
+    return 'Vigencia: ' + pkg.duration_days + ' d√≠as';
 }
 
 function formatPriceMXN(value) {
@@ -43,7 +43,7 @@ async function loadPackages() {
     const container = document.getElementById('plans-container');
     if (!container) return;
 
-    container.innerHTML = '<p style="color:#9ca3af;font-size:.85rem;">Cargando paquetes de licenciamientoÖ</p>';
+    container.innerHTML = '<p style="color:#9ca3af;font-size:.85rem;">Cargando paquetes de licenciamiento‚Ä¶</p>';
 
     try {
         const res = await fetch(`${API_BASE}/api/packages`);
@@ -52,7 +52,7 @@ async function loadPackages() {
         if (!json.ok) {
             console.error('Error al cargar paquetes:', json.error);
             container.innerHTML =
-                '<p style="color:#f87171;font-size:.85rem;">OcurriÛ un error al cargar los paquetes. Intenta m·s tarde.</p>';
+                '<p style="color:#f87171;font-size:.85rem;">Ocurri√≥ un error al cargar los paquetes. Intenta m√°s tarde.</p>';
             return;
         }
 
@@ -74,7 +74,7 @@ async function loadPackages() {
             const desc = document.createElement('p');
             desc.className = 'plan-desc';
             desc.textContent =
-                'Incluye acceso al mÛdulo de docentes, control de rondas y listas de palabras configurables.';
+                'Incluye acceso al m√≥dulo de docentes, control de rondas y listas de palabras configurables.';
 
             const price = document.createElement('p');
             price.className = 'plan-price';
@@ -114,7 +114,7 @@ async function loadPackages() {
     } catch (err) {
         console.error('Error inesperado cargando paquetes:', err);
         container.innerHTML =
-            '<p style="color:#f87171;font-size:.85rem;">OcurriÛ un error al cargar los paquetes. Intenta m·s tarde.</p>';
+            '<p style="color:#f87171;font-size:.85rem;">Ocurri√≥ un error al cargar los paquetes. Intenta m√°s tarde.</p>';
     }
 }
 
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = emailInput.value.trim();
 
             if (!email) {
-                alert('Por favor ingresa un correo v·lido.');
+                alert('Por favor ingresa un correo v√°lido.');
                 emailInput.focus();
                 return;
             }
@@ -150,11 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await res.json();
 
                 if (!data.ok) {
-                    alert('OcurriÛ un error al iniciar el pago.');
+                    alert('Ocurri√≥ un error al iniciar el pago.');
                     return;
                 }
 
-                // AquÌ luego se reemplazar· por la URL real de Mercado Pago
+                // Aqu√≠ luego se reemplazar√° por la URL real de Mercado Pago
                 window.location.href = data.fake_payment_url;
             } catch (err) {
                 console.error(err);
